@@ -9,13 +9,13 @@ const HTTP_USER_STATUS_NOT_FOUND = {
   message: 'Пользователь не найден',
 };
 
-const HTTP_CARD_STATUS_NOT_FOUND = {
-  name: 'HTTP_CARD_STATUS_NOT_FOUND',
+const HTTP_MOVIE_STATUS_NOT_FOUND = {
+  name: 'HTTP_MOVIE_STATUS_NOT_FOUND',
   code: 404,
-  message: 'Карточка не найдена',
+  message: 'Фильм не найден',
 };
 const HTTP_PAGE_STATUS_NOT_FOUND = {
-  name: 'HTTP_CARD_STATUS_NOT_FOUND',
+  name: 'HTTP_PAGE_STATUS_NOT_FOUND',
   code: 404,
   message: 'Страница не найдена',
 };
@@ -50,7 +50,7 @@ const customErrors = (err, req, res, next) => {
       .send({ message: HTTP_STATUS_BAD_REQUEST.message });
   } else if (err.name === 'DocumentNotFoundError'
     || err.name === 'HTTP_USER_STATUS_NOT_FOUND'
-    || err.name === 'HTTP_CARD_STATUS_NOT_FOUND'
+    || err.name === 'HTTP_MOVIE_STATUS_NOT_FOUND'
     || err.name === 'HTTP_PAGE_STATUS_NOT_FOUND') {
     res
       .status(err.code)
@@ -78,7 +78,7 @@ const customErrors = (err, req, res, next) => {
 module.exports = {
   HTTP_STATUS_BAD_REQUEST,
   HTTP_USER_STATUS_NOT_FOUND,
-  HTTP_CARD_STATUS_NOT_FOUND,
+  HTTP_MOVIE_STATUS_NOT_FOUND,
   HTTP_PAGE_STATUS_NOT_FOUND,
   HTTP_STATUS_FORBIDDEN,
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
