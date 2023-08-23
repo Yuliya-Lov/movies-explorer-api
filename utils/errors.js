@@ -22,7 +22,7 @@ const HTTP_PAGE_STATUS_NOT_FOUND = {
 const HTTP_STATUS_UNAUTHORIZED = {
   name: 'HTTP_STATUS_UNAUTHORIZED',
   code: 401,
-  message: 'Неуспешная авторизация',
+  message: 'Необходима авторизация',
 };
 
 const HTTP_STATUS_FORBIDDEN = {

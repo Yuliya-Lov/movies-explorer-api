@@ -24,7 +24,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/bitfilmsdb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({ origin: ['http://localhost:3000', 'https://place.nomoreparties.co'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'https://mymovies.nomoredomainsicu.ru'], credentials: true }));
 app.use(requestLogger);
 
 app.use('/', fullLimiter, router);
