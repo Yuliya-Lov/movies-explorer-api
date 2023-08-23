@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
-  nameRU: {
+  nameEN: {
     type: String,
     required: true,
     pattern: /^[A-Za-z0-9\s\-:]*$/,
   },
-  nameEN: {
+  nameRU: {
     type: String,
     required: true,
     pattern: /^[А-Яа-я0-9\sё\-:]*$/,

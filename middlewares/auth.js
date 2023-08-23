@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const {
   HTTP_STATUS_UNAUTHORIZED,
 } = require('../utils/errors');
