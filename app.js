@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -7,6 +8,7 @@ const { errors } = require('celebrate');
 
 const { PORT } = process.env;
 const app = express();
+app.use(helmet());
 const bodyParser = require('body-parser');
 const {
   customErrors,
