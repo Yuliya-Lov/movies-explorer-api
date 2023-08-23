@@ -6,7 +6,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { errors } = require('celebrate');
 
-const { PORT } = process.env;
+const { PORT, DB_URL } = process.env;
 const app = express();
 app.use(helmet());
 const bodyParser = require('body-parser');
@@ -17,9 +17,7 @@ const { router } = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { fullLimiter } = require('./middlewares/ratelimiter');
 
-mongoose.connect('mongodb://0.0.0.0:27017/bitfilmsdb', {
-  useNewUrlParser: true,
-});
+mongoose.connect(DB_URL, { useNewUrlParser: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
