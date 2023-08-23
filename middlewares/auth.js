@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
   const payload = checkToken(req.cookies.jwt);
   console.log('авторизация пройдена!');
   req.user = payload;
-  next();
+  return next();
 };
 
 module.exports = {
