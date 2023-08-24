@@ -1,15 +1,16 @@
 const jwt = require('jsonwebtoken');
+const {
+  jwtSecret,
+} = require('../config');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
-
-const createToken = (payload) => jwt.sign(payload, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+const createToken = (payload) => jwt.sign(payload, jwtSecret);
 
 const checkToken = (token) => {
   if (!token) {
     return false;
   }
   try {
-    return jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+    return jwt.verify(token, jwtSecret);
   } catch (e) {
     return false;
   }

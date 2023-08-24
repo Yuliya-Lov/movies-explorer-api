@@ -53,7 +53,7 @@ const customErrors = (err, req, res, next) => {
     || err.name === 'HTTP_MOVIE_STATUS_NOT_FOUND'
     || err.name === 'HTTP_PAGE_STATUS_NOT_FOUND') {
     res
-      .status(err.code)
+      .status(err.code || 404)
       .send({ message: err.message });
   } else if (err.name === 'HTTP_STATUS_FORBIDDEN') {
     res

@@ -3,7 +3,6 @@ const {
   HTTP_PAGE_STATUS_NOT_FOUND,
 } = require('../utils/errors');
 const {
-  tokenValidation,
   createUserValidation,
   loginUserValidation,
 } = require('../middlewares/celebrate');
@@ -19,7 +18,7 @@ const { movieRouter } = require('./movies');
 
 router.post('/signup', createLimiter, createUserValidation, createUser);
 router.post('/signin', loginUserValidation, login);
-router.use(tokenValidation, auth);
+router.use(auth);
 router.use('/users', userRouter);
 router.use('/movies', movieRouter);
 router.post('/signout', logout);

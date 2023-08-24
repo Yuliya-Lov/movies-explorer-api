@@ -13,7 +13,7 @@ const movieSchema = new mongoose.Schema({
     pattern: /^[А-Яа-я0-9\sё\-:]*$/,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   country: {
