@@ -1,43 +1,43 @@
 const HTTP_STATUS_BAD_REQUEST = {
   name: 'HTTP_STATUS_BAD_REQUEST',
-  code: 400,
+  statusCode: 400,
   message: 'Переданы некорректные данные',
 };
 const HTTP_USER_STATUS_NOT_FOUND = {
   name: 'HTTP_USER_STATUS_NOT_FOUND',
-  code: 404,
+  statusCode: 404,
   message: 'Пользователь не найден',
 };
 
 const HTTP_MOVIE_STATUS_NOT_FOUND = {
   name: 'HTTP_MOVIE_STATUS_NOT_FOUND',
-  code: 404,
+  statusCode: 404,
   message: 'Фильм не найден',
 };
 const HTTP_PAGE_STATUS_NOT_FOUND = {
   name: 'HTTP_PAGE_STATUS_NOT_FOUND',
-  code: 404,
+  statusCode: 404,
   message: 'Страница не найдена',
 };
 const HTTP_STATUS_UNAUTHORIZED = {
   name: 'HTTP_STATUS_UNAUTHORIZED',
-  code: 401,
+  statusCode: 401,
   message: 'Необходима авторизация',
 };
 
 const HTTP_STATUS_FORBIDDEN = {
   name: 'HTTP_STATUS_FORBIDDEN',
-  code: 403,
+  statusCode: 403,
   message: 'Доступ запрещен',
 };
 const HTTP_STATUS_CONFLICT = {
   name: 'HTTP_STATUS_CONFLICT',
-  code: 409,
+  statusCode: 409,
   message: 'Пользователь с таким email уже зарегистрирован',
 };
 const HTTP_STATUS_INTERNAL_SERVER_ERROR = {
   name: 'HTTP_STATUS_INTERNAL_SERVER_ERROR',
-  code: 500,
+  statusCode: 500,
   message: 'На сервере произошла ошибка',
 };
 
@@ -46,29 +46,31 @@ const customErrors = (err, req, res, next) => {
     || err.name === 'CastError'
     || err.name === 'HTTP_STATUS_BAD_REQUEST') {
     res
-      .status(HTTP_STATUS_BAD_REQUEST.code)
+      .status(HTTP_STATUS_BAD_REQUEST.statusCode)
       .send({ message: HTTP_STATUS_BAD_REQUEST.message });
   } else if (err.name === 'DocumentNotFoundError'
     || err.name === 'HTTP_USER_STATUS_NOT_FOUND'
     || err.name === 'HTTP_MOVIE_STATUS_NOT_FOUND'
     || err.name === 'HTTP_PAGE_STATUS_NOT_FOUND') {
     res
-      .status(err.code || 404)
+      .status(err.statusCode || 404)
       .send({ message: err.message });
   } else if (err.name === 'HTTP_STATUS_FORBIDDEN') {
     res
-      .status(HTTP_STATUS_FORBIDDEN.code)
+      .status(HTTP_STATUS_FORBIDDEN.statusCode)
       .send({ message: err.message });
   } else if (err.name === 'HTTP_STATUS_UNAUTHORIZED'
     || err.name === 'JsonWebTokenError') {
-    res.status(HTTP_STATUS_UNAUTHORIZED.code).send({ message: HTTP_STATUS_UNAUTHORIZED.message });
+    res
+      .status(HTTP_STATUS_UNAUTHORIZED.statusCode)
+      .send(HTTP_STATUS_UNAUTHORIZED);
   } else if (err.name === 'MongoServerError') {
     res
-      .status(HTTP_STATUS_CONFLICT.code)
+      .status(HTTP_STATUS_CONFLICT.statusCode)
       .send({ message: HTTP_STATUS_CONFLICT.message });
   } else {
     res
-      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR.code)
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR.statusCode)
       .send({ message: HTTP_STATUS_INTERNAL_SERVER_ERROR.message });
   }
 

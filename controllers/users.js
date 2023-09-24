@@ -14,12 +14,21 @@ const createUser = (req, res, next) => {
           name: req.body.name,
         },
       )
-        .then((user) => res
-          .status(201)
-          .send({
-            email: user.email,
-            name: user.name,
-          }))
+        .then((user) => {
+          const token = createToken({ _id: user._id });
+          res
+            .status(201)
+            .cookie('jwt', token, {
+              maxAge: 3600000 * 24 * 7,
+              httpOnly: true,
+              sameSite: true,
+            })
+            .send({
+              email: user.email,
+              name: user.name,
+              message: 'Куки записаны!',
+            });
+        })
         .catch((err) => next(err));
     })
     .catch((err) => next(err));
