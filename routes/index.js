@@ -18,10 +18,10 @@ const { movieRouter } = require('./movies');
 
 router.post('/signup', createLimiter, createUserValidation, createUser);
 router.post('/signin', loginUserValidation, login);
+router.post('/signout', logout);
 router.use(auth);
 router.use('/users', userRouter);
 router.use('/movies', movieRouter);
-router.post('/signout', logout);
 router.get('/*', (req, res, next) => {
   next(HTTP_PAGE_STATUS_NOT_FOUND);
 });

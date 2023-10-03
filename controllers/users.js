@@ -59,7 +59,9 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('jwt').status(200).send({ message: 'Успешный выход из учетной записи' });
+  if (res.cookie('jwt')) {
+    res.clearCookie('jwt').status(200).send({ message: 'Успешный выход из учетной записи' });
+  }
 };
 
 const updateUserInfo = (req, res, next) => {
